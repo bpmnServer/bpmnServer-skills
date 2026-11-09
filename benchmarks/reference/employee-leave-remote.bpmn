@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  id="Definitions_EmployeeLeaveRemote"
+  targetNamespace="https://bpmn.omniworkflow.com/examples">
+  <bpmn:process id="EmployeeLeaveRemote" name="Employee Leave Request" isExecutable="true">
+    <bpmn:startEvent id="Start_LeaveRequest" name="Leave requested"><bpmn:outgoing>Flow_Start_Submit</bpmn:outgoing></bpmn:startEvent>
+    <bpmn:userTask id="Task_SubmitLeave" name="Submit leave request"><bpmn:incoming>Flow_Start_Submit</bpmn:incoming><bpmn:outgoing>Flow_Submit_Approval</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="Task_ManagerApproval" name="Manager approval"><bpmn:incoming>Flow_Submit_Approval</bpmn:incoming><bpmn:outgoing>Flow_Approval_Decision</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_Approved" name="Approved?"><bpmn:incoming>Flow_Approval_Decision</bpmn:incoming><bpmn:outgoing>Flow_Approved_End</bpmn:outgoing><bpmn:outgoing>Flow_Rejected_End</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:endEvent id="End_Approved" name="Leave approved"><bpmn:incoming>Flow_Approved_End</bpmn:incoming></bpmn:endEvent>
+    <bpmn:endEvent id="End_Rejected" name="Leave rejected"><bpmn:incoming>Flow_Rejected_End</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_Start_Submit" sourceRef="Start_LeaveRequest" targetRef="Task_SubmitLeave"/>
+    <bpmn:sequenceFlow id="Flow_Submit_Approval" sourceRef="Task_SubmitLeave" targetRef="Task_ManagerApproval"/>
+    <bpmn:sequenceFlow id="Flow_Approval_Decision" sourceRef="Task_ManagerApproval" targetRef="Gateway_Approved"/>
+    <bpmn:sequenceFlow id="Flow_Approved_End" name="approved" sourceRef="Gateway_Approved" targetRef="End_Approved"/>
+    <bpmn:sequenceFlow id="Flow_Rejected_End" name="rejected" sourceRef="Gateway_Approved" targetRef="End_Rejected"/>
+  </bpmn:process>
+</bpmn:definitions>

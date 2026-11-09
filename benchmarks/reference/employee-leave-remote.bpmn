@@ -19,4 +19,19 @@
     <bpmn:sequenceFlow id="Flow_Approved_End" name="approved" sourceRef="Gateway_Approved" targetRef="End_Approved"/>
     <bpmn:sequenceFlow id="Flow_Rejected_End" name="rejected" sourceRef="Gateway_Approved" targetRef="End_Rejected"/>
   </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_EmployeeLeaveRemote">
+    <bpmndi:BPMNPlane id="BPMNPlane_EmployeeLeaveRemote" bpmnElement="EmployeeLeaveRemote">
+      <bpmndi:BPMNShape id="Shape_Start" bpmnElement="Start_LeaveRequest"><dc:Bounds x="80" y="120" width="36" height="36"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Submit" bpmnElement="Task_SubmitLeave"><dc:Bounds x="160" y="98" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Approval" bpmnElement="Task_ManagerApproval"><dc:Bounds x="330" y="98" width="120" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Gateway" bpmnElement="Gateway_Approved" isMarkerVisible="true"><dc:Bounds x="500" y="113" width="50" height="50"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Approved" bpmnElement="End_Approved"><dc:Bounds x="640" y="80" width="36" height="36"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Rejected" bpmnElement="End_Rejected"><dc:Bounds x="640" y="180" width="36" height="36"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Edge_Start_Submit" bpmnElement="Flow_Start_Submit"><di:waypoint x="116" y="138"/><di:waypoint x="160" y="138"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Submit_Approval" bpmnElement="Flow_Submit_Approval"><di:waypoint x="280" y="138"/><di:waypoint x="330" y="138"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Approval_Gateway" bpmnElement="Flow_Approval_Decision"><di:waypoint x="450" y="138"/><di:waypoint x="500" y="138"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Approved_End" bpmnElement="Flow_Approved_End"><di:waypoint x="550" y="138"/><di:waypoint x="600" y="138"/><di:waypoint x="600" y="98"/><di:waypoint x="640" y="98"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Rejected_End" bpmnElement="Flow_Rejected_End"><di:waypoint x="550" y="138"/><di:waypoint x="600" y="138"/><di:waypoint x="600" y="198"/><di:waypoint x="640" y="198"/></bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
 </bpmn:definitions>
